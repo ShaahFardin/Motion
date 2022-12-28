@@ -22,7 +22,7 @@ const AddTask = () => {
             .then(data => {
                 if (data.success) {
                     toast.success("Task added");
-                   
+                   e.target.reset()
                 }
                 
             })
