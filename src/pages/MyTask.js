@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router';
 
 const MyTask = () => {
 
     const [tasks, setTasks] = useState([]);
-    const [update, setUpdate] = useState(false)
+    const [update, setUpdate] = useState(false);
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetch('http://localhost:5000/tasks')
@@ -22,8 +24,8 @@ const MyTask = () => {
             })
     }, [update])
 
-    const handleEdit = () => {
-
+    const handleEdit = (id) => {
+        navigate(`/tasks/edit/${id}`)
     }
     const handleDelete = (id) => {
         fetch(`http://localhost:5000/tasks/${id}`, {
