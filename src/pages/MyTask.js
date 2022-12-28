@@ -21,7 +21,26 @@ const MyTask = () => {
             })
     }, [])
 
-    console.log(tasks);
+    const handleEdit = () =>{
+        
+    }
+    const handleDelete = (id) =>{
+        fetch(`http://localhost:5000/tasks/${id}`, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success){
+                toast.success("Deleted")
+            }else{
+                toast.error("Something went wrong!");
+                console.log(data.error);
+            }
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+    }
 
     return (
         <div className='md:flex w-full h-screen bg-gray-100 justify-center items-center'>
@@ -30,10 +49,10 @@ const MyTask = () => {
                     tasks.map(task => {
                         return <div className='flex justify-between items-center p-5 bg-white my-3 rounded'>
                             <span className='w-1/3 md:w-1/2'>{task.task}</span>
-                            <span className='  cursor-pointer'>
+                            <span onClick={()=>handleEdit(task._id)} className='  cursor-pointer'>
                                 <EditIcon />
                             </span>
-                            <span className='   cursor-pointer'>
+                            <span onClick={()=>handleDelete(task._id)} className='   cursor-pointer'>
                                 <DeleteIcon />
                             </span>
                         </div>

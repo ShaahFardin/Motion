@@ -7,7 +7,7 @@ const CompletedTask = () => {
         <div className='md:flex w-full h-screen bg-[#FAFAFA] justify-center items-center'>
             <div className='md:w-2/3 md:h-96 w-full h-screen '>
                 <div className='flex justify-between items-center p-5 bg-white my-3 rounded'>
-                    <span className='line-through md:text-xl '>Completed Task</span>
+                    <span className='line-through md:text-xl w-1/3 md:w-1/3'>Completed Task</span>
                     <span >Add Comment</span>
                     <span className='text-slate-600 hover:text-blue-500 cursor-pointer'>
                         <EditIcon />
@@ -17,7 +17,7 @@ const CompletedTask = () => {
                     </span>
                 </div>
                 <div className='flex justify-between items-center p-5 bg-white my-3 rounded'>
-                    <span className='line-through md:text-xl '>Completed Task</span>
+                    <span className='line-through md:text-xl md:w-1/3'>Completed Task</span>
                     <span >Add Comment</span>
                     <span className='  cursor-pointer'>
                         <EditIcon />
@@ -27,7 +27,7 @@ const CompletedTask = () => {
                     </span>
                 </div>
                 <div className='flex justify-between items-center p-5 bg-white my-3 rounded'>
-                    <span className='line-through md:text-xl '>Task Name</span>
+                    <span className='line-through md:text-xl md:w-1/3'>Task Name</span>
                     <span>Add Comment</span>
                     <span className='  cursor-pointer'>
                         <EditIcon />
