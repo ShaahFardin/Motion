@@ -14,7 +14,7 @@ const Sidebar = () => {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <div>
+        <div >
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className='block md:hidden rounded-sm  px-3 py-1 '>{isOpen ? <MenuIcon /> : <CancelIcon />}
@@ -51,7 +51,6 @@ const Sidebar = () => {
                         <LogoutIcon className='mx-4' />
                         <span>Logout</span>
                     </Link>
-
                 </div>
             </aside>
         </div>

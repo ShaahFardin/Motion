@@ -33,7 +33,7 @@ const Register = () => {
                                 id="password" type="password" placeholder="********" />
                         </div>
                         <div class="flex items-center justify-between">
-                            <button class="bg-blue-500 hover:bg-blue-700 items-center
+                            <button class="bg-blue-500 hover:bg-blue-700 w-full items-center
                              text-white font-bold
                          py-2 pl-2 pr-4 rounded-md focus:outline-none focus:shadow-outline" type="submit">
                                <PersonAddIcon className='mr-2'/> Sign Up
