@@ -8,6 +8,7 @@ const MyTask = () => {
 
     const [tasks, setTasks] = useState([]);
     const [update, setUpdate] = useState(false);
+    const [check, setCheck] = useState(true)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -22,7 +23,7 @@ const MyTask = () => {
             .catch(err => {
                 console.log(err);
             })
-    }, [update])
+    }, [update, check])
 
     const handleEdit = (id) => {
         navigate(`/tasks/edit/${id}`)
@@ -46,14 +47,51 @@ const MyTask = () => {
             })
     }
 
+
+    const handleComplete = id => {
+
+        console.log("clicked", id);
+
+        const completed = {
+            completed: true
+        }
+
+        fetch(`http://localhost:5000/task/completed/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(completed)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    toast.success("Task completed");
+                    setCheck(!check)
+                } else {
+                    toast.error("Something went wrong!");
+                    console.log(data);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     return (
         <div className='md:flex w-full h-screen bg-gray-100 justify-center items-center'>
             <div className='md:w-2/3 md:h-96 mt-14 w-full'>
                 {
                     tasks.map(task => {
-                        return <div className='flex justify-between items-center p-5 bg-white my-3 rounded'>
-                            <span className='w-1/3 md:w-1/2'>{task.task}</span>
-                            <span onClick={() => handleEdit(task._id)} className='  cursor-pointer'>
+                        return <div className={`flex justify-between
+                         items-center p-5 bg-white my-3 rounded ${task.completed && "line-through" }`}>
+                            <span className={`${task.completed && "hidden" }`} >
+                                <input
+                                    type='checkbox'
+                                    name='checkbox' onClick={() => handleComplete(task._id)} />
+                            </span>
+                            <span className={`w-1/3 md:w-1/2 `}>{task.task}</span>
+                            <span onClick={() => handleEdit(task._id)} className='cursor-pointer'>
                                 <EditIcon />
                             </span>
                             <span onClick={() => handleDelete(task._id)} className='   cursor-pointer'>

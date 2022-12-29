@@ -9,7 +9,7 @@ const CompletedTask = () => {
                 <div className='flex justify-between items-center p-5 bg-white my-3 rounded'>
                     <span className='line-through md:text-xl w-1/3 md:w-1/3'>Completed Task</span>
                     <span >Add Comment</span>
-                    <span className='text-slate-600 hover:text-blue-500 cursor-pointer'>
+                    <span  className='text-slate-600 hover:text-blue-500 cursor-pointer'>
                         <EditIcon />
                     </span>
                     <span className=' text-slate-600 hover:text-red-500  cursor-pointer'>
