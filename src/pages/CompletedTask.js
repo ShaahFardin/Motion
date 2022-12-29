@@ -46,11 +46,14 @@ const CompletedTask = () => {
     }
 
     return (
-        <div className='md:flex w-full h-screen bg-[#FAFAFA] justify-center items-center'>
-            <div className='md:w-2/3 md:h-96 w-full h-screen '>
+        <div className='md:flex dark:bg-slate-800  
+        w-full h-screen bg-[#FAFAFA] justify-center items-center'>
+            <div className='md:w-2/3 md:h-96  w-full h-screen '>
                 {
                     completedTasks.map(completed => {
-                        return <div className='flex justify-between items-center p-5 bg-white my-3 rounded'>
+                        return <div className='flex dark:bg-slate-900
+                         dark:text-white justify-between items-center
+                          p-5 bg-white my-3 rounded'>
                             <span
                              className={`line-through  w-1/3 md:w-1/3 }`}>
                                 {completed.task}

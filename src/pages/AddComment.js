@@ -55,12 +55,12 @@ const AddComment = () => {
     }
 
     return (
-        <div className='w-full bg-[#FAFAFA] h-screen md:flex justify-center items-center '>
-            <div className='md:w-2/3 md:h-48 mt-20 md:mt-0 bg-white w-full h-screen border'>
-                <form onSubmit={handleUpdateTask} class="rounded px-8 pt-6 pb-8 mb-4">
+        <div className='w-full bg-gray-100 h-screen md:flex justify-center items-center dark:bg-slate-800'>
+            <div className='md:w-2/3 md:h-40 mt-20 md:mt-0 bg-white w-full h-screen '>
+                <form onSubmit={handleUpdateTask} class=" h-full px-8 pt-6 pb-8 mb-4 dark:bg-slate-900">
                     <div className="mb-4">
                         <input
-                            class=" appearance-none border-b-[1px]   w-full
+                            class="dark:bg-slate-800 dark:text-white appearance-none border-b-[1px]   w-full
                              py-2 px-3 text-gray-700 leading-tight focus:outline-none
                               focus:shadow-outline mb-5"
                             defaultValue={task.comment}

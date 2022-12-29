@@ -79,11 +79,12 @@ const MyTask = () => {
     }
 
     return (
-        <div className='md:flex w-full h-screen bg-gray-100 justify-center items-center'>
-            <div className='md:w-2/3 md:h-96 mt-14 w-full'>
+        <div className='md:flex dark:bg-slate-800 w-full h-screen bg-gray-100 justify-center items-center'>
+            <div className='md:w-2/3 md:h-96  w-full'>
                 {
                     tasks.map(task => {
-                        return <div className={`flex justify-between
+                        return <div className={`flex justify-between dark:bg-slate-900
+                        dark:text-white
                          items-center p-5 bg-white my-3 rounded ${task.completed && "line-through" }`}>
                             <span className={`${task.completed && "hidden" }`} >
                                 <input
