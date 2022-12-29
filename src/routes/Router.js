@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
+import AddComment from "../pages/AddComment";
 import AddTask from "../pages/AddTask";
 import CompletedTask from "../pages/CompletedTask";
 import EditTask from "../pages/EditTask";
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
             {
                 path: '/tasks/edit/:id',
                 element: <EditTask/>
+            },
+            {
+                path: '/tasks/addcomment/:id',
+                element: <AddComment/>
             },
         ]
     }
