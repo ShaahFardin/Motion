@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
-import { AddTaskOutlined, Logout } from '@mui/icons-material';
+import { AddTaskOutlined } from '@mui/icons-material';
 import TaskOutlinedIcon from '@mui/icons-material/TaskOutlined';
 import { Link } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -102,6 +102,7 @@ const Sidebar = () => {
                         <PersonAddIcon className='mx-4' />
                         <span>Sign Up</span>
                     </Link>
+                    
                     <Link to='/login'
                         className={`${user?.email ? 'hidden' : "block"} border-b-[1px] transition duration-300 
                      ease-in-out hover:bg-gray-100 dark:hover:bg-slate-800

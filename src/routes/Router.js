@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import Modal from "../components/Modal";
 import Main from "../layout/Main";
 import AddComment from "../pages/AddComment";
 import AddTask from "../pages/AddTask";
