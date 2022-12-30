@@ -14,7 +14,7 @@ const EditTask = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/tasks/${id}`)
+        fetch(`https://motion-server.vercel.app/tasks/${id}`)
             .then(res => res.json())
             .then(data => {
 
@@ -35,7 +35,7 @@ const EditTask = () => {
             task: e.target.task.value,
             img: e.target.image.value,
         }
-        fetch(`http://localhost:5000/task/edit/${id}`, {
+        fetch(`https://motion-server.vercel.app/task/edit/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type':"application/json"

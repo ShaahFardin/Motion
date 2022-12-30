@@ -14,7 +14,7 @@ const AddComment = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        fetch(`http://localhost:5000/tasks/${id}`)
+        fetch(`https://motion-server.vercel.app/tasks/${id}`)
             .then(res => res.json())
             .then(data => {
 
@@ -33,7 +33,7 @@ const AddComment = () => {
             comment: e.target.comment.value
         }
         e.preventDefault()
-        fetch(`http://localhost:5000/task/edit/${id}`, {
+        fetch(`https://motion-server.vercel.app/task/edit/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': "application/json"

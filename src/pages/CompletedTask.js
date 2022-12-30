@@ -11,7 +11,7 @@ const CompletedTask = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        fetch(`http://localhost:5000/task/completed`)
+        fetch(`https://motion-server.vercel.app/task/completed`)
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
@@ -22,7 +22,7 @@ const CompletedTask = () => {
 
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/tasks/${id}`, {
+        fetch(`https://motion-server.vercel.app/tasks/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

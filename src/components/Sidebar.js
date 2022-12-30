@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import { AddTaskOutlined, Logout } from '@mui/icons-material';
 import TaskOutlinedIcon from '@mui/icons-material/TaskOutlined';
@@ -10,11 +10,16 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import { AuthContext } from '../Context/AuthProvider';
+import { toast } from 'react-hot-toast';
+import { Tooltip } from '@mui/material';
 
 const Sidebar = () => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [theme, setTheme] = useState('light');
+
+    const { user, logoutUser } = useContext(AuthContext)
 
     useEffect(() => {
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -35,31 +40,37 @@ const Sidebar = () => {
         setTheme(theme === 'dark' ? 'light' : 'dark')
     }
 
-    
+    const handleSignOut = () => {
+        logoutUser()
+            .then(() => toast.success("Logout successfull"))
+            .catch((error) => console.log(error.message))
+    }
 
     return (
         <div >
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className='block md:hidden rounded-sm  px-3 py-1 '>{isOpen ? <MenuIcon /> : <CancelIcon />}
+                className='block dark:bg-slate-900 dark:text-white md:hidden rounded-sm  px-3 py-1 '>{isOpen ? <MenuIcon /> : <CancelIcon />}
             </button>
-            <aside className={`bg-white dark:bg-slate-900 dark:text-white w-64 md:w-80 h-screen top-0 relative
+            <aside className={`bg-white  dark:bg-slate-900 dark:text-white w-64 md:w-80 h-screen top-0 relative
                  left-0 z-0 overflow-y-auto shadow-xl ${isOpen ? 'hidden' : 'md:block'}`}>
                 <div className='absolute mt-5 inset-x-0
                  top-0 flex justify-center items-center'>
-                    <img src='https://i.ibb.co/C8VQVnr/user.jpg'
-                        className='w-16 h-14 object-cover rounded-xl' alt='' />
+                    <Tooltip title={user?.email}>
+                        <img src={user?.photoURL ? user.photoURL : 'https://toppng.com/uploads/preview/icons-logos-emojis-user-icon-png-transparent-11563566676e32kbvynug.png'}
+                            className='w-16 h-14 object-cover rounded-xl' alt='' />
+                    </Tooltip>
 
                 </div>
 
                 <div className='p-5 mt-28 '>
-                    
+
                     <Link onClick={toggleDarkMode} className='border-b-[1px] transition
                      duration-300 ease-in-out hover:bg-gray-100
                       dark:hover:bg-slate-800
                       my-5 p-2 flex justify-start items-center cursor-pointer'>
-                       {theme === 'light' ? <DarkModeIcon className='mx-4'/>: <LightModeIcon className='mx-4'/>}
-                        <button >{theme === 'light' ? "Dark": "Light"}</button>
+                        {theme === 'light' ? <DarkModeIcon className='mx-4' /> : <LightModeIcon className='mx-4' />}
+                        <button >{theme === 'light' ? "Dark" : "Light"}</button>
                     </Link>
                     <Link to='/' className='border-b-[1px] transition
                      duration-300 ease-in-out hover:bg-gray-100
@@ -92,16 +103,16 @@ const Sidebar = () => {
                         <span>Sign Up</span>
                     </Link>
                     <Link to='/login'
-                        className='border-b-[1px] transition duration-300 
+                        className={`${user?.email ? 'hidden' : "block"} border-b-[1px] transition duration-300 
                      ease-in-out hover:bg-gray-100 dark:hover:bg-slate-800
-                      my-5 p-2 flex justify-start items-center cursor-pointer'>
+                      my-5 p-2 flex justify-start items-center cursor-pointer`}>
                         <LoginIcon className='mx-4' />
                         <span>login</span>
                     </Link>
-                    <Link to='/completedTask'
-                        className='border-b-[1px] transition duration-300 ease-in-out
+                    <Link onClick={handleSignOut} to='/completedTask'
+                        className={`${user?.email ? 'block' : "hidden"} border-b-[1px] transition duration-300 ease-in-out
                      hover:bg-gray-100 dark:hover:bg-slate-800 my-5 p-2 flex justify-start items-center 
-                     cursor-pointer'>
+                     cursor-pointer`}>
                         <LogoutIcon className='mx-4' />
                         <span>Logout</span>
                     </Link>

@@ -3,6 +3,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router';
+import { IconButton, Tooltip } from '@mui/material';
 
 const MyTask = () => {
 
@@ -12,7 +13,7 @@ const MyTask = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        fetch('http://localhost:5000/tasks')
+        fetch('https://motion-server.vercel.app/tasks')
             .then(res => res.json())
             .then(data => {
 
@@ -29,7 +30,7 @@ const MyTask = () => {
         navigate(`/tasks/edit/${id}`)
     }
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/tasks/${id}`, {
+        fetch(`https://motion-server.vercel.app/tasks/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -56,7 +57,7 @@ const MyTask = () => {
             completed: true
         }
 
-        fetch(`http://localhost:5000/task/completed/${id}`, {
+        fetch(`https://motion-server.vercel.app/task/completed/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -85,18 +86,29 @@ const MyTask = () => {
                     tasks.map(task => {
                         return <div className={`flex justify-between dark:bg-slate-900
                         dark:text-white
-                         items-center p-5 bg-white my-3 rounded ${task.completed && "line-through" }`}>
-                            <span className={`${task.completed && "hidden" }`} >
+                         items-center p-5 bg-white my-3 rounded ${task.completed && "line-through"}`}>
+                            <span className={`${task.completed && "hidden"}`} >
                                 <input
                                     type='checkbox'
                                     name='checkbox' onClick={() => handleComplete(task._id)} />
                             </span>
-                            <span className={`w-1/3 md:w-1/2 `}>{task.task}</span>
+                            <Tooltip title='Task Name'>
+                                <span className={`w-1/3 md:w-1/2 `}>{task.task}</span>
+                            </Tooltip>
                             <span onClick={() => handleEdit(task._id)} className='cursor-pointer'>
-                                <EditIcon />
+                                <Tooltip title="Edit task">
+                                    <IconButton>
+                                        <EditIcon className=' dark:text-white' />
+                                    </IconButton>
+                                </Tooltip>
                             </span>
                             <span onClick={() => handleDelete(task._id)} className='   cursor-pointer'>
-                                <DeleteIcon />
+
+                                <Tooltip title="Delete task">
+                                    <IconButton>
+                                        <DeleteIcon className=' dark:text-white' />
+                                    </IconButton>
+                                </Tooltip>
                             </span>
                         </div>
                     })
